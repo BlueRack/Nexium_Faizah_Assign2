@@ -1,24 +1,20 @@
-// app/summaries/[id]/page.tsx
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
+// ✅ Correct props type for app directory
+interface SummaryDetailPageProps {
+  params: { id: string };
+}
 
-export default async function SummaryDetailPage({ params }: Props) {
+export default async function SummaryDetailPage({ params }: SummaryDetailPageProps) {
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
     .eq("id", params.id)
     .single();
 
-  if (error || !data) {
-    return notFound();
-  }
+  if (error || !data) return notFound();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black py-12 px-4">
@@ -32,6 +28,7 @@ export default async function SummaryDetailPage({ params }: Props) {
           <a
             href={data.url}
             target="_blank"
+            rel="noopener noreferrer"
             className="underline hover:text-fuchsia-400 transition"
           >
             {data.url}
