@@ -1,22 +1,24 @@
-// app/summaries/[id]/page.tsx
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
-import type { Metadata } from "next";
 
-type PageProps = {
-  params: {
-    id: string;
-  };
+// ✅ Fix type by importing from Next.js
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
 };
 
-export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   return {
-    title: `Summary - ${params.id}`,
+    title: `Summary: ${params.id}`,
   };
-};
+}
 
-export default async function SummaryDetailPage({ params }: PageProps) {
+export default async function SummaryDetailPage({ params }: Props) {
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
