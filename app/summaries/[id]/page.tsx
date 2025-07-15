@@ -1,3 +1,5 @@
+
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 
@@ -32,9 +34,9 @@ export default async function SummaryDetailPage({ params }: { params: { id: stri
         </p>
 
         <div className="text-center">
-          <a href="/summaries" className="inline-block mt-6 px-4 py-2 rounded bg-pink-500 hover:bg-pink-600 transition text-white">
+          <Link href="/summaries" className="inline-block mt-6 px-4 py-2 rounded bg-pink-500 hover:bg-pink-600 transition text-white">
             🔙 Back to Summaries
-          </a>
+          </Link>
         </div>
       </div>
     </div>

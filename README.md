@@ -61,7 +61,7 @@ An intelligent blog summarisation tool that scrapes blog posts, generates AI-sty
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/Nexium_Faizah_Assign2
+git clone https://github.com/BlueRack/Nexium_Faizah_Assign2
 cd Nexium_Faizah_Assign2
 
 # Install dependencies
