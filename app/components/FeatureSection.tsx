@@ -5,7 +5,7 @@ import { Globe, Brain, Languages } from "lucide-react";
 
 const features = [
   {
-    icon: <Globe className="w-6 h-6 text-sky-400" />,
+    icon: <Globe className="w-6 h-6 text-pink-400" />,
     title: "Content Intelligence",
     description: "Seamlessly extracts structured text from any blog link",
   },
@@ -15,7 +15,7 @@ const features = [
     description: "Our engine compresses content into meaningful insights",
   },
   {
-    icon: <Languages className="w-6 h-6 text-yellow-400" />,
+    icon: <Languages className="w-6 h-6 text-fuchsia-400" />,
     title: "Bilingual Understanding",
     description: "Auto-translates summaries into human-quality Urdu",
   },
@@ -32,7 +32,7 @@ export default function FeatureSection() {
         {features.map((feat, i) => (
           <motion.div
             key={i}
-            className="bg-black/30 p-6 rounded-xl shadow-md border border-blue-900"
+            className="bg-white/5 p-6 rounded-xl shadow-md border border-purple-900 backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
