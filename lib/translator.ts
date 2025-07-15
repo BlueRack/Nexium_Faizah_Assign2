@@ -1,24 +1,20 @@
-// lib/translator.ts
+export async function translateToUrdu(text: string): Promise<string> {
+  const CHUNK_SIZE = 500;
+  const chunks = [];
 
-const dictionary: Record<string, string> = {
-  "React": "ریئیکٹ",
-  "blog": "بلاگ",
-  "summary": "خلاصہ",
-  "article": "مضمون",
-  "important": "اہم",
-  "guide": "رہنما",
-  "how to": "کیسے کریں",
-  "tips": "مشورے",
-  "you should": "آپ کو چاہیے",
-};
+  for (let i = 0; i < text.length; i += CHUNK_SIZE) {
+    const chunk = text.slice(i, i + CHUNK_SIZE);
+    const encoded = encodeURIComponent(chunk);
 
-export function translateToUrdu(text: string): string {
-  let translated = text;
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encoded}&langpair=en|ur`
+    );
 
-  for (const [english, urdu] of Object.entries(dictionary)) {
-    const regex = new RegExp(english, "gi");
-    translated = translated.replace(regex, urdu);
+    if (!res.ok) throw new Error("Translation API failed");
+
+    const data = await res.json();
+    chunks.push(data.responseData.translatedText);
   }
 
-  return translated;
+  return chunks.join(" ");
 }
