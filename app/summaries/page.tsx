@@ -1,4 +1,5 @@
-'use client';
+
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type SummaryItem = {
@@ -36,7 +37,9 @@ export default function SummariesPage() {
         <div className="space-y-6">
           {summaries.map((item) => (
             <div key={item.id} className="p-6 bg-white/10 border border-pink-600 rounded-xl text-white shadow-md">
-              <h2 className="text-xl font-semibold text-pink-400">{item.title}</h2>
+              <Link href={`/summaries/${item.id}`}>
+                <h2 className="text-xl font-semibold text-pink-400 hover:underline">{item.title}</h2>
+              </Link>
               <p className="text-sm text-gray-400 mb-2">🔗 <a href={item.url} target="_blank" className="underline">{item.url}</a></p>
               <p className="text-white line-clamp-3">{item.summary}</p>
               <details className="mt-2 cursor-pointer">
@@ -48,9 +51,9 @@ export default function SummariesPage() {
         </div>
 
         <div className="text-center mt-10">
-          <a href="/" className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-500 text-white rounded-full hover:brightness-110 transition">
+          <Link href="/" className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-500 text-white rounded-full hover:brightness-110 transition">
             🔙 Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
