@@ -8,11 +8,14 @@ import { Sparkles } from "lucide-react";
 export default function BlogForm() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<string | null>(null);
 
   const handleAnalyse = async () => {
     if (!url) return;
 
     setLoading(true);
+    setStatus("🧠 Analysing website...");
+
     try {
       const res = await fetch('/api/process', {
         method: 'POST',
@@ -26,11 +29,24 @@ export default function BlogForm() {
         throw new Error("Failed to fetch content");
       }
 
+      setStatus("📄 Extracting content...");
       const data = await res.json();
+
       console.log("Scraped Text:", data.blogText);
-      // Later: Send this to summary and translation pipeline
+
+      // Simulate upcoming steps (summary + translation)
+      setTimeout(() => {
+        setStatus("📝 Generating summary...");
+        setTimeout(() => {
+          setStatus("🌐 Translating to Urdu...");
+          setTimeout(() => {
+            setStatus("✅ Done!");
+          }, 1500);
+        }, 1500);
+      }, 1000);
     } catch (err) {
       console.error("Error during analysis:", err);
+      setStatus("❌ Error during analysis");
     } finally {
       setLoading(false);
     }
@@ -64,6 +80,12 @@ export default function BlogForm() {
           )}
         </Button>
       </div>
+
+      {status && (
+        <p className="text-sm mt-4 text-fuchsia-400">
+          {status}
+        </p>
+      )}
     </div>
   );
 }
