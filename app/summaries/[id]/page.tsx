@@ -1,13 +1,21 @@
 
+
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 
-export default async function SummaryDetailPage({ params }: { params: { id: string } }) {
+type Params = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function SummaryPage({ params }: Params) {
+  const { id } = params;
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (error || !data) return notFound();
