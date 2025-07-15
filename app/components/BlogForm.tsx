@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
@@ -9,6 +10,9 @@ export default function BlogForm() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const [showResult, setShowResult] = useState(false);
+
+  const router = useRouter();
 
   const handleAnalyse = async () => {
     if (!url) return;
@@ -40,7 +44,16 @@ export default function BlogForm() {
         setTimeout(() => {
           setStatus("🌐 Translating to Urdu...");
           setTimeout(() => {
-            setStatus("✅ Done!");
+          setStatus("✅ Done!");
+          localStorage.setItem("summaryData", JSON.stringify({
+            title: data.title,
+            url: data.url,
+            summary: data.summary,
+            urdu: data.urdu
+          }));
+          setTimeout(() => {
+            setShowResult(true);
+          }, 1000);
           }, 1500);
         }, 1500);
       }, 1000);
@@ -85,6 +98,14 @@ export default function BlogForm() {
         <p className="text-sm mt-4 text-fuchsia-400">
           {status}
         </p>
+      )}
+      {showResult && (
+        <button
+          onClick={() => router.push("/result")}
+          className="mt-4 px-4 py-2 rounded bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 text-white hover:brightness-110 transition-all"
+        >
+          🔍 View Result
+        </button>
       )}
     </div>
   );

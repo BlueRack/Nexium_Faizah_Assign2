@@ -1,24 +1,20 @@
 import { scrapeTextFromURL } from "@/lib/scraper";
+import { generateSummary } from "@/lib/summariser";
+import { translateToUrdu } from "@/lib/translator";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const url = body.url;
+    const { url } = await req.json();
+    const rawText = await scrapeTextFromURL(url);
 
-    console.log("📥 Received URL:", url);
+    const summary = generateSummary(rawText);
+    const urdu = translateToUrdu(summary);
+    const title = rawText.split('\n')[0].slice(0, 100); // fake title
 
-    if (!url) {
-      console.log("❌ No URL received");
-      return NextResponse.json({ error: "URL missing" }, { status: 400 });
-    }
-
-    const blogText = await scrapeTextFromURL(url);
-    console.log("✅ Scraped text length:", blogText.length);
-
-    return NextResponse.json({ blogText });
-  } catch (error: any) {
-    console.error("🔥 API Crash:", error.message);
-    return NextResponse.json({ error: error.message || "Server Error" }, { status: 500 });
+    return NextResponse.json({ url, title, summary, urdu });
+  } catch (err: any) {
+    console.error("❌ API Error:", err.message);
+    return NextResponse.json({ error: "Failed to process blog" }, { status: 500 });
   }
 }
