@@ -2,9 +2,10 @@ import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-// ✅ Correct props type for app directory
+// ✅ Correct props type for App Router
 interface SummaryDetailPageProps {
   params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export default async function SummaryDetailPage({ params }: SummaryDetailPageProps) {
