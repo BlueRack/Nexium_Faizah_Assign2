@@ -2,27 +2,19 @@ import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-// ✅ Fix type by importing from Next.js
-import type { Metadata, ResolvingMetadata } from "next";
-
-type Props = {
-  params: { id: string };
+type Params = {
+  params: {
+    id: string;
+  };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  return {
-    title: `Summary: ${params.id}`,
-  };
-}
+export default async function SummaryDetailPage({ params }: Params) {
+  const { id } = params;
 
-export default async function SummaryDetailPage({ params }: Props) {
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (error || !data) return notFound();
