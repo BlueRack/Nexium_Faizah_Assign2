@@ -1,14 +1,22 @@
+// app/summaries/[id]/page.tsx
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-// ✅ Correct props type for App Router
-interface SummaryDetailPageProps {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
 
-export default async function SummaryDetailPage({ params }: SummaryDetailPageProps) {
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+  return {
+    title: `Summary - ${params.id}`,
+  };
+};
+
+export default async function SummaryDetailPage({ params }: PageProps) {
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
