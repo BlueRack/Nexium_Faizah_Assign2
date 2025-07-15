@@ -23,8 +23,12 @@ export async function POST(req: NextRequest) {
     ]);
 
     return NextResponse.json({ url, title, summary, urdu });
-  } catch (err: any) {
-    console.error("❌ API Error:", err.message);
+  } catch (err: unknown) {
+    let message = "Unknown error";
+    if (err instanceof Error) {
+      message = err.message;
+    }
+    console.error("❌ API Error:", message);
     return NextResponse.json({ error: "Failed to process blog" }, { status: 500 });
   }
 }
