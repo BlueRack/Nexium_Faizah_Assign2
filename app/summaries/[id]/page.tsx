@@ -2,13 +2,7 @@ import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
-
-export default async function SummaryDetailPage({ params }: Params) {
+export default async function SummaryDetailPage({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const { data, error } = await supabase
