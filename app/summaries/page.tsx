@@ -38,7 +38,7 @@ export default function SummariesPage() {
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black px-6 py-12">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-500 text-transparent bg-clip-text">
-          📚 All Blog Summaries
+          All Blog Summaries
         </h1>
 
         <input
@@ -72,9 +72,13 @@ export default function SummariesPage() {
         </div>
 
         <div className="text-center mt-10">
-          <a href="/" className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-500 text-white rounded-full hover:brightness-110 transition">
+          <Link
+            href="/"
+            className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-500 text-white rounded-full hover:brightness-110 transition inline-block text-center"
+          >
             🔙 Back to Home
-          </a>
+          </Link>
+
         </div>
       </div>
     </div>
