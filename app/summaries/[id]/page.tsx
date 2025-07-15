@@ -1,9 +1,19 @@
-
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 
-export default async function SummaryDetailPage({ params }: { params: { id: string } }) {
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+export default async function SummaryDetailPage({ params }: PageProps) {
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
@@ -20,7 +30,15 @@ export default async function SummaryDetailPage({ params }: { params: { id: stri
         </h1>
 
         <div className="text-sm text-gray-300 text-center">
-          🔗 <a href={data.url} target="_blank" className="underline hover:text-fuchsia-400 transition">{data.url}</a>
+          🔗{" "}
+          <a
+            href={data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-fuchsia-400 transition"
+          >
+            {data.url}
+          </a>
         </div>
 
         <h2 className="text-xl font-semibold text-pink-400 mt-6">📄 AI Summary:</h2>
@@ -34,7 +52,10 @@ export default async function SummaryDetailPage({ params }: { params: { id: stri
         </p>
 
         <div className="text-center">
-          <Link href="/summaries" className="inline-block mt-6 px-4 py-2 rounded bg-pink-500 hover:bg-pink-600 transition text-white">
+          <Link
+            href="/summaries"
+            className="inline-block mt-6 px-4 py-2 rounded bg-pink-500 hover:bg-pink-600 transition text-white"
+          >
             🔙 Back to Summaries
           </Link>
         </div>
