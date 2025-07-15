@@ -1,26 +1,24 @@
-import Link from "next/link";
+// app/summaries/[id]/page.tsx
 import { notFound } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
-type PageProps = {
+type Props = {
   params: {
     id: string;
   };
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-export default async function SummaryDetailPage({ params }: PageProps) {
+export default async function SummaryDetailPage({ params }: Props) {
   const { data, error } = await supabase
     .from("summaries")
     .select("*")
     .eq("id", params.id)
     .single();
 
-  if (error || !data) return notFound();
+  if (error || !data) {
+    return notFound();
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black py-12 px-4">
@@ -34,7 +32,6 @@ export default async function SummaryDetailPage({ params }: PageProps) {
           <a
             href={data.url}
             target="_blank"
-            rel="noopener noreferrer"
             className="underline hover:text-fuchsia-400 transition"
           >
             {data.url}
