@@ -17,8 +17,12 @@ export async function scrapeTextFromURL(url: string): Promise<string> {
     const text = articleText.length > 300 ? articleText : paragraphText;
 
     return text.replace(/\s+/g, ' ').trim();
-  } catch (error: any) {
-    console.error("❌ Scraper Error:", error.message);
+  } catch (error: unknown) {
+    let message = "Unknown error";
+    if (error instanceof Error) {
+      message = error.message;
+    }
+    console.error("❌ Scraper Error:", message);
     throw new Error("Failed to scrape content from URL");
   }
 }

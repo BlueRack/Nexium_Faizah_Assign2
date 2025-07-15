@@ -1,8 +1,16 @@
-'use client';
+
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
+type SummaryData = {
+  url: string;
+  title: string;
+  summary: string;
+  urdu: string;
+};
 
 export default function ResultPage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<SummaryData | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("summaryData");
@@ -40,9 +48,9 @@ export default function ResultPage() {
         </p>
 
         <div className="text-center mt-6">
-          <a href="/" className="inline-block px-5 py-2 bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 text-white font-medium rounded-full hover:brightness-110 transition">
+          <Link href="/" className="inline-block px-5 py-2 bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 text-white font-medium rounded-full hover:brightness-110 transition">
             🔙 Go Back
-          </a>
+          </Link>
         </div>
       </div>
     </div>
