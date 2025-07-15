@@ -24,9 +24,11 @@ const features = [
 export default function FeatureSection() {
   return (
     <section className="mt-16 px-4 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-8 text-blue-300">
-        Powered by Custom Intelligence
-      </h2>
+    <h2 className="text-lg md:text-xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-fuchsia-500 mb-8">
+      Powered by Custom Intelligence
+    </h2>
+
+
 
       <div className="grid md:grid-cols-3 gap-6">
         {features.map((feat, i) => (
