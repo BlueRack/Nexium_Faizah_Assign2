@@ -1,75 +1,67 @@
-# 🧠 AI Blog Summariser
+🧠 AI Blog Summarizer
+An intelligent blog summarization tool that extracts, analyzes, and translates content with AI-powered processing.
 
-An intelligent blog summarisation tool that scrapes blog posts, generates AI-style summaries, translates them into Urdu, and stores results in Supabase — all wrapped in a beautiful ShadCN UI and deployed on Vercel.
+🚀 Features
+URL Processing: Submit any blog URL for analysis
 
----
+Content Extraction: Robust scraping using Cheerio
 
-## 🚀 Features
+AI Summarization: Custom scoring algorithm for key insights
 
-- 🔗 Enter any blog URL
-- 📄 Scrapes the blog content (Cheerio)
-- 🧠 Generates static summary using custom scoring
-- 🌐 Translates summary to Urdu using MyMemory API
-- ☁️ Stores:
-  - Summary in Supabase
-  - (Coming soon) Full content in MongoDB
-- 💅 Beautiful UI built with:
-  - Next.js 14 (App Router)
-  - TypeScript
-  - Tailwind CSS + ShadCN UI
-  - Framer Motion animations
-- 🧾 View all past summaries
-- ✨ Gradient UI with glowing buttons
+Multilingual Support: Automatic Urdu translation via MyMemory API
 
----
+Data Storage: Secure cloud storage with Supabase
 
-## 📂 Tech Stack
+Modern UI: Built with Next.js 14 and ShadCN components
 
-| Frontend      | Backend          | AI/Utils         | Storage        |
-|---------------|------------------|------------------|----------------|
-| Next.js 14    | API Routes       | Custom Summary   | Supabase       |
-| React + TS    | Cheerio Scraper  | MyMemory API     | (Optional) MongoDB |
-| Tailwind CSS  | Server Components | Urdu Translator |               |
+Performance: Optimized with App Router and Server Components
 
----
+🌐 Live Deployment
+Access the production application:
+🔗 https://nexium-faizah-assign2.vercel.app/
 
-## 🛠 How It Works
+🛠 Technical Implementation
+Core Stack
+Frontend: Next.js 14 (App Router), TypeScript, Tailwind CSS
 
-1. **User enters blog URL**
-2. **Scrapes content** using Cheerio
-3. **Summarises** text via scoring algorithm
-4. **Translates** to Urdu (real-time)
-5. **Saves** summary to Supabase
-6. **Displays** result on summary page
+Backend: API Routes, Server Components
 
----
+AI Processing: Custom summarization algorithm, MyMemory Translation API
 
-## 📸 Screenshots
+Database: Supabase for structured data storage
 
-> Add UI screenshots here if you’d like  
-> You can use `![screenshot](./public/ss.png)` format
+Key Packages
+Content Extraction: Cheerio
 
----
+UI Components: ShadCN
 
-## 🌐 Live Site
+Animations: Framer Motion
 
-> Coming soon – hosted on Vercel!
+State Management: React Hooks
 
----
-
-## 📦 Setup Instructions
-
-```bash
-# Clone the repo
+Development Setup
+bash
+# Clone repository
 git clone https://github.com/BlueRack/Nexium_Faizah_Assign2
 cd Nexium_Faizah_Assign2
 
 # Install dependencies
 pnpm install
 
-# Run locally
+# Run development server
 pnpm dev
 
-👩‍💻 Author
+# Build for production
+pnpm build
+Future Enhancements
+MongoDB integration for full content storage
+
+Additional language support
+
+User authentication system
+
+Enhanced analytics dashboard
+
+Author
 Faizah Azeem
-AI Engineer | Data Scientist | ML Enthusiast
+AI Engineer | Data Science Specialist
