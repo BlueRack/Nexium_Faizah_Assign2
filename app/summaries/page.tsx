@@ -55,13 +55,11 @@ export default function SummariesPage() {
           ) : (
             filtered.map((item) => (
               <div key={item.id} className="p-6 bg-white/10 border border-pink-600 rounded-xl text-white shadow-md">
-                <Link href={`/summaries/${item.id}`}>
-                  <h2 className="text-xl font-semibold text-pink-400 hover:underline">{item.title}</h2>
-                </Link>
+                <h2 className="text-xl font-semibold text-pink-400">{item.title}</h2>
                 <p className="text-sm text-gray-400 mb-2">
                   🔗 <a href={item.url} target="_blank" className="underline">{item.url}</a>
                 </p>
-                <p className="text-white line-clamp-3">{item.summary}</p>
+                <p className="text-white">{item.summary}</p>
                 <details className="mt-2 cursor-pointer">
                   <summary className="text-fuchsia-400">🔍 View Urdu</summary>
                   <p className="text-white mt-2">{item.urdu}</p>
@@ -78,7 +76,6 @@ export default function SummariesPage() {
           >
             🔙 Back to Home
           </Link>
-
         </div>
       </div>
     </div>
